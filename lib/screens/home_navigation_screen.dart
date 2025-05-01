@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hw51/screens/not_found_screen.dart';
-import 'package:hw51/screens/panel_of_devicec_screen.dart';
+import 'package:hw51/screens/panel_of_devices_screen.dart';
 import 'package:hw51/screens/settings_of_devices_screen.dart';
-
 import '../app_routes.dart';
 
 typedef Routes = Map<String, Widget Function(BuildContext)>;
