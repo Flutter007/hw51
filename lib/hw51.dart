@@ -3,6 +3,7 @@ import 'package:hw51/provider/light_provider.dart';
 import 'package:hw51/provider/lock_provider.dart';
 import 'package:hw51/provider/thermostat_provider.dart';
 import 'package:hw51/screens/home_navigation_screen.dart';
+import 'package:hw51/theme/light_theme.dart';
 import 'package:provider/provider.dart';
 
 import 'app_routes.dart';
@@ -25,6 +26,7 @@ class _Hw51State extends State<Hw51> {
       ],
       child: MaterialApp(
         initialRoute: AppRoutes.home,
+        theme: lightTheme,
         home: HomeNavigationScreen(),
       ),
     );

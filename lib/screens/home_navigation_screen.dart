@@ -13,29 +13,37 @@ class HomeNavigationScreen extends StatefulWidget {
   State<HomeNavigationScreen> createState() => _HomeNavigationScreenState();
 }
 
-final Routes routes = {
-  AppRoutes.home: (context) => PanelOfDevicesScreen(),
-  AppRoutes.about: (context) => SettingsOfDevicesScreen(),
-};
-
-MaterialPageRoute onGenerateRoute(Route route, RouteSettings settings) {
-  final builder = routes[settings.name];
-  if (builder != null) {
-    return MaterialPageRoute(builder: builder, settings: settings);
-  }
-  return MaterialPageRoute(
-    builder: (ctx) => NotFoundScreen(),
-    settings: settings,
-  );
-}
-
-List<Widget> get navigatorScreens => [
-  PanelOfDevicesScreen(),
-  SettingsOfDevicesScreen(),
-];
-
 class _HomeNavigationScreenState extends State<HomeNavigationScreen> {
   int selectedIndex = 0;
+
+  final Routes homeRoutes = {
+    AppRoutes.home: (context) => PanelOfDevicesScreen(),
+  };
+  final Routes settingsRoutes = {
+    AppRoutes.settings: (context) => SettingsOfDevicesScreen(),
+  };
+
+  MaterialPageRoute onGenerateRoute(Routes routes, RouteSettings settings) {
+    final builder = routes[settings.name];
+    if (builder != null) {
+      return MaterialPageRoute(builder: builder, settings: settings);
+    }
+    return MaterialPageRoute(
+      builder: (ctx) => NotFoundScreen(),
+      settings: settings,
+    );
+  }
+
+  List<Widget> get navigatorScreens => [
+    Navigator(
+      initialRoute: AppRoutes.home,
+      onGenerateRoute: (settings) => onGenerateRoute(homeRoutes, settings),
+    ),
+    Navigator(
+      initialRoute: AppRoutes.settings,
+      onGenerateRoute: (settings) => onGenerateRoute(settingsRoutes, settings),
+    ),
+  ];
 
   void onDestinationSelected(int index) {
     setState(() {

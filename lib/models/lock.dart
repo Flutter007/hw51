@@ -7,7 +7,7 @@ class Lock extends Device {
     required super.id,
     required super.name,
     required super.image,
-    this.isLocked = false,
+    this.isLocked = true,
   });
   Lock copyWith({String? id, String? name, String? image, bool? isLocked}) {
     return Lock(

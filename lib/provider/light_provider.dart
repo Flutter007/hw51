@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-
+import '../models/device.dart';
 import '../models/light.dart';
 
 class LighterProvider extends ChangeNotifier {
-  final List<Light> _lights = [
+  final List<Device> _lights = [
     Light(
       id: 'light',
       name: 'Hall lighter',
@@ -12,12 +12,20 @@ class LighterProvider extends ChangeNotifier {
     ),
   ];
 
-  List<Light> get lights => _lights;
+  List<Device> get lights => _lights;
 
   void changeLightState(Light light) {
-    final index = _lights.indexOf(light);
+    final index = _lights.indexWhere((t) => t.id == light.id);
     if (index != -1) {
       _lights[index] = light.copyWith(isTurnedOn: !light.isTurnedOn);
+    }
+    notifyListeners();
+  }
+
+  void setLightName(Light light, String newName) {
+    final index = _lights.indexWhere((t) => t.id == light.id);
+    if (index != -1) {
+      _lights[index] = light.copyWith(name: newName);
     }
     notifyListeners();
   }

@@ -9,7 +9,7 @@ class Thermostat extends Device {
     required super.name,
     required super.image,
     this.temperature = 20,
-    this.isTurnedOn = false,
+    this.isTurnedOn = true,
   });
 
   Thermostat copyWith({
